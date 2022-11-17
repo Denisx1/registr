@@ -6,7 +6,6 @@ const ApiError = require('../exceptions/apiError')
 class UserController {
     async registration(req, res, next) {
         try {
-
             const errors = validationResult(req)
 
             if (!errors.isEmpty()){
@@ -18,6 +17,7 @@ class UserController {
 
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
             return res.json(userData)
+
         } catch (e) {
             next(e)
         }
@@ -38,9 +38,7 @@ class UserController {
 
     async logout(req, res, next) {
         try {
-            
             const { refreshToken }  = req.cookies
-            
             const token = await userService.logout(refreshToken)
 
             res.clearCookie('refreshToken')
@@ -54,7 +52,6 @@ class UserController {
 
     async activate(req, res, next) {
         try {
-
             const activationLink = req.params.link
 
             await userService.activate(activationLink)
@@ -73,6 +70,7 @@ class UserController {
 
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
             return res.json(userData)
+
         } catch (e) {
             next(e)
         }
@@ -82,6 +80,7 @@ class UserController {
         try {
             const users = await userService.getAllUsers()
             return res.json(users)
+            
         } catch (e) {
             next(e)
         }

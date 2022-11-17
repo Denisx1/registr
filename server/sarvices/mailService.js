@@ -4,6 +4,7 @@ const { SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER, API_URL} = require('../c
 class MailService {
 
     constructor(){
+
         this.tranporter = nodemailer.createTransport({
             host: SMTP_HOST,
             port: SMTP_PORT,
@@ -15,6 +16,7 @@ class MailService {
         })
     }
     async sendActivationMail(to, link){
+        
         await this.tranporter.sendMail({
             from: SMTP_USER,
             to,

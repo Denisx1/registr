@@ -35,29 +35,33 @@ class UserService {
     }
 
     async activate(activationLink) {
+
         const user = await UserModel.findOne({ activationLink })
+
         if (!user) {
             throw ApiError.badRequest('Uncorrectly link')
         }
+
         user.isActivated = true
         await user.save()
     }
 
-    async login(email, password){
+    async login(email, password) {
 
-        const user = await UserModel.findOne({email})
+        const user = await UserModel.findOne({ email })
 
-        if (!user){
+        if (!user) {
             throw ApiError.badRequest('User is absent')
         }
-        
+
         const isPassEquels = await bctypt.compare(password, user.password)
-       
-        if (!isPassEquels){
+
+        if (!isPassEquels) {
             throw ApiError.badRequest('Password is failed')
         }
+
         const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({...userDto})
+        const tokens = tokenService.generateTokens({ ...userDto })
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
         return {
@@ -66,36 +70,39 @@ class UserService {
         }
     }
 
-    async logout(refreshToken){
+    async logout(refreshToken) {
 
         const token = await tokenService.removeToken(refreshToken)
 
         return token
     }
 
-    async refresh(refreshToken){
+    async refresh(refreshToken) {
 
-        if (!refreshToken){
+        if (!refreshToken) {
             throw ApiError.UnauthorizationError()
         }
+
         const userData = tokenService.validateRefreshToken(refreshToken)
         const tokenfromDb = await tokenService.findToken(refreshToken)
 
-        if (!userData || !tokenfromDb){
+        if (!userData || !tokenfromDb) {
             throw ApiError.UnauthorizationError()
         }
+
         const user = await UserModel.findById(userData.id)
         const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({...userDto})
-
+        const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
+
         return {
             ...tokens,
             user: userDto
         }
     }
 
-    async getAllUsers(){
+    async getAllUsers() {
+
         const users = await UserModel.find()
         return users
     }
