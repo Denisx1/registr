@@ -1,11 +1,10 @@
+
 import { observer } from 'mobx-react-lite';
 import React, { FC, useEffect, useContext, useState } from 'react';
 import LoginForm from './components/loginForm';
 import { Context } from './index';
 import { IUser } from './models/user';
 import UserService from './services/userService';
-
-
 
 
 const App: FC = () => {
@@ -37,7 +36,7 @@ const App: FC = () => {
     return (
       <div>
         <LoginForm />
-        <button onClick={getUsers}>Get Users</button>
+        <button className='get' onClick={getUsers}>Get Users</button>
       </div>
       
       
