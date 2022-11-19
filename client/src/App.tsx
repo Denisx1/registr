@@ -36,7 +36,7 @@ const App: FC = () => {
     return (
       <div>
         <LoginForm />
-        <button className='get' onClick={getUsers}>Get Users</button>
+        {/*<button onClick={getUsers}>Get Users</button> */}
       </div>
       
       

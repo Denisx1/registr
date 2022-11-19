@@ -9,28 +9,29 @@ const LoginForm: FC = () => {
     const [password, setPassword] = useState<string>('')
     const {store} = useContext(Context)
     return (
+        <div className="form">
         
-            <div className="form">
-                <input className="email"
-                    onChange={e=>setEmail(e.target.value)}
-                    value= {email}
-                    type="text"
-                    placeholder="Email"
-                />
-                <input className="pass"
-                    onChange={e=>setPassword(e.target.value)}
-                    value= {password}
-                    type="password"
-                    placeholder="Password"
-                />
-                <button onClick={()=> store.login(email, password)} className='login'>
-                    Login
-                </button>
-                <button onClick={()=> store.registration(email, password)} className=''>
-                    Registration
-                </button>
-            </div>
-           
+            <input className="email" 
+                onChange={e=>setEmail(e.target.value)}
+                value= {email}
+                type="text"
+                placeholder="Email"
+            /> 
+            <input className="pass"
+                onChange={e=>setPassword(e.target.value)}
+                value= {password}
+                type="password"
+                placeholder="Password"
+            />
+        <div className="btn">
+            <button onClick={()=> store.login(email, password)} className='login'>
+                Login
+            </button>
+            <button onClick={()=> store.registration(email, password)} className='register'>
+                Registration
+            </button>
+        </div>    
+        </div>
     )
 }
 
