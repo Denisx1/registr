@@ -1,7 +1,7 @@
 
 import { observer } from 'mobx-react-lite';
 import React, { FC, useEffect, useContext, useState } from 'react';
-import LoginForm from './components/loginForm';
+import LoginForm from './components/authform';
 import { Context } from './index';
 import { IUser } from './models/user';
 import UserService from './services/userService';
