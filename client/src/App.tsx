@@ -1,15 +1,18 @@
 
 import { observer } from 'mobx-react-lite';
+import path from 'path';
 import React, { FC, useEffect, useContext, useState } from 'react';
 import LoginForm from './components/authform';
 import { Context } from './index';
 import { IUser } from './models/user';
 import UserService from './services/userService';
+import { FormR } from './components/register';
 
 
 const App: FC = () => {
   const { store } = useContext(Context)
   const [users, setUsers] = useState<IUser[]>([])
+  
 
   useEffect(() => {
 
@@ -44,17 +47,18 @@ const App: FC = () => {
   }
 
   return (
-    <div>
-      <h1>{store.isAuth ? `User is authorise ${store.user.email}` : 'REGISRTATION'}</h1>
-      <h1>{store.user.isActivated? 'Account is activated': 'Account is not activated Check your Email'}</h1>
-      <button onClick={() => store.logout()}>Logout</button>
       <div>
-        <button onClick={getUsers}>Get Users</button>
+        <h1>{store.isAuth ? `User is authorise ${store.user.email}` : 'REGISRTATION'}</h1>
+        <h1>{store.user.isActivated? 'Account is activated': 'Account is not activated Check your Email'}</h1>
+        <button onClick={() => store.logout()}>Logout</button>
+        <div>
+          <button onClick={getUsers}>Get Users</button>
+        </div>
+        {users.map(user => 
+            <div key={user.email}>{user.email}</div>
+            )}
       </div>
-      {users.map(user => 
-          <div key={user.email}>{user.email}</div>
-          )}
-    </div>
+    
   );
 }
 
