@@ -1,9 +1,8 @@
 import React, { FC, useContext, useState } from "react";
 import { Context } from "../index";
-import { observer } from "mobx-react-lite";
 import "./index.css";
 
-export const Form = ({ submitTitle, onSubmit }: { submitTitle: any, onSubmit:(email: string, password: string) => void }) => {
+export const Form = ({ submitTitle }:{submitTitle: string}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { store } = useContext(Context);
@@ -25,11 +24,14 @@ export const Form = ({ submitTitle, onSubmit }: { submitTitle: any, onSubmit:(em
         placeholder="Password"
       />
       <span>password</span>
-      <button onClick={() => onSubmit(email, password)} className="clkbtn">
-        {submitTitle}
+      <button onClick={() => store.login(email, password)} className="clkbtn">
+        Login
       </button>
       <hr />
-      {submitTitle = 'login' && <a href="#">Forgot Password?</a>}
+      {submitTitle == 'login' && <a href="#">Forgot Password?</a>}
+      
     </div>
+
+    
   );
 };

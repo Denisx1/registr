@@ -56,6 +56,7 @@ header {
 
 .login,.signup{
   font-size: 22px;
+  position: relative;
   border: none;
   outline: none;
   background-color: transparent;
@@ -67,26 +68,24 @@ header {
 .slider {
   height: 60px;
   width: 150px;
-  
   border-radius: 50px;
   background-image: linear-gradient(to right,
           rgb(255, 195, 110),
           rgb(255, 146, 91));
   position: absolute;
+  transition: all 0.5s ease-in-out;
   top: 50px;
   left: 100px;
-  transition: all 0.5s ease-in-out;
-  
 }
 
-.activemove{
-  left: 100px;
+.moveslider{
+  left: 150px;
 }
 
 
 .formSection {
   height: 500px;
-  width: 500px;
+  width: 1000px;
   padding: 20px 0;
   display: flex;
   position: relative;
@@ -99,28 +98,25 @@ header {
   left: -500px;
 }
 
-.login-box,
-.signup-box {
+.login-box,.signup-box{
     height: 100%;
-    width: 100%;
+    width: 150px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 0px 40px;
+    padding: 0px 40px ;
 }
 
 
 
 .ele {
   height: 60px;
-  width: 400px;
+  width: 100%;
   outline: none;
   border: none;
   color: rgb(77, 77, 77);
   background-color: rgb(240, 240, 240);
   border-radius: 50px;
-  padding-left: 30px;
   font-size: 18px;
 }
 
@@ -352,7 +348,7 @@ hr {
 a {
   text-align: center;
   display: block;
-  top: 90px;
+  top: 80px;
   position: relative;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.2);

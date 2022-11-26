@@ -3,7 +3,7 @@ import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
 import './index.css';
 
-export const FormR = ({ submitTitle }: {submitTitle: any}) => {
+export const FormR = ({ submitTitle, }: { submitTitle: any}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { store } = useContext(Context);
@@ -24,6 +24,7 @@ export const FormR = ({ submitTitle }: {submitTitle: any}) => {
         Register
         </button>
         <hr/>
+        {submitTitle == 'signup' && <a href="#">hello</a>}
     </div>
   );
 };

@@ -1,31 +1,40 @@
-import React, { FC, useContext, useState, Component } from "react";
-import { Context } from "../index";
-import { observer } from "mobx-react-lite";
+import React, {FC, useContext, useState} from 'react';
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
 import { Form } from "./form";
-import { FormR } from "./register";
-import "./index.css";
+import { FormR } from './register'
 
 const LoginForm: FC = () => {
-  const [conditionForm, setConditionForm] = useState(false);
-  const { store } = useContext(Context);
+    let signup = document.querySelector(".signup");
+    let login = document.querySelector(".login");
+    let slider = document.querySelector(".slider");
+    let formSection = document.querySelector(".form-section");
+    
+    const [conditionForm, setConditionForm] = useState(false);
+    const {store} = useContext(Context);
 
-  console.log(conditionForm)
-  return (
-    <div className="container">
-      <div className="slider"></div>
-      <div className="btn">
-        <button className= { !conditionForm  ? 'signup' : 'signup'} onClick={() => setConditionForm(false)}>
-          Signup
-        </button>
-        <button className={ conditionForm ?    'login' : 'login'} onClick={() => setConditionForm(true)}>
-          Login
-        </button>
+    return (
+        <div className="container">
+        <div className="slider"></div>
+        <div className="btn">
+          <button className='login' onClick={() => 
+            setConditionForm(true)}>
+            login
+          </button>
+          <button className='signup' onClick={() =>
+            
+            setConditionForm(false)}>
+            signup
+          </button>
+        </div>
+        <div className="formSection">
+          
+          <Form submitTitle={conditionForm ? "login" : 'signup'} />
+          <FormR submitTitle={!conditionForm ? "signup" : 'login'} />
+          
+        </div>
       </div>
-      <div className="formSection">
-        <Form submitTitle={conditionForm ? "Login" : "SignUp"} onSubmit={conditionForm ? store.login: store.registration} />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default observer(LoginForm);

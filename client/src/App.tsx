@@ -1,12 +1,14 @@
 
 import { observer } from 'mobx-react-lite';
-import path from 'path';
+
 import React, { FC, useEffect, useContext, useState } from 'react';
-import LoginForm from './components/authform';
+
+import LoginForm from './components/authForm';
 import { Context } from './index';
 import { IUser } from './models/user';
 import UserService from './services/userService';
-import { FormR } from './components/register';
+import "./App.css";
+
 
 
 const App: FC = () => {
@@ -32,20 +34,19 @@ const App: FC = () => {
   }
 
   if (store.isLoading){
-    return <div>Loading...</div>
+    return <div className='load'>Loading...</div>
   }
 
   if (!store.isAuth) {
+    
     return (
       <div>
         <LoginForm />
         {/*<button onClick={getUsers}>Get Users</button> */}
-      </div>
-      
-      
+      </div> 
     )
   }
-
+  
   return (
       <div>
         <h1>{store.isAuth ? `User is authorise ${store.user.email}` : 'REGISRTATION'}</h1>
@@ -58,8 +59,8 @@ const App: FC = () => {
             <div key={user.email}>{user.email}</div>
             )}
       </div>
-    
-  );
-}
+    );
+  }
+
 
 export default observer(App);

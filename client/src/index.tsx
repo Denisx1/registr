@@ -16,8 +16,7 @@ export const Context = createContext<State>({
 
 ReactDOM.render(
   <Context.Provider value={{
-    store
-  }}>
+    store }}>
     <App />
   </Context.Provider>
   ,
