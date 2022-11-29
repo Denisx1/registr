@@ -1,10 +1,7 @@
 @import url(
 "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-  
-
 
 body{
-  background-color: #d3d3d3;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
   font-size: 14px;
@@ -16,7 +13,7 @@ body{
   align-items: center;
   flex-direction: column;
   gap: 30px;
-  background-color: rgb(231, 231, 231);
+  background-color: #d3d3d3;
 }
 
 header {
@@ -47,7 +44,7 @@ header {
   height: 60px;
   width: 300px;
   margin: 50px auto;
-  box-shadow: 10px 10px 30px rgb(254, 215, 188);
+  box-shadow: 10px 10px 30px rgb(61, 65, 141);
   border-radius: 50px;
   display: flex;
   justify-content: space-around;
@@ -69,29 +66,23 @@ header {
   height: 60px;
   width: 150px;
   border-radius: 50px;
-  background-image: linear-gradient(to right,
-          rgb(255, 195, 110),
-          rgb(255, 146, 91));
+  background-color: #1161ed;
   position: absolute;
   transition: all 0.5s ease-in-out;
-  top: 50px;
-  left: 100px;
+  margin: 50px 100px;
 }
 
 .moveslider{
   left: 150px;
 }
 
-
 .formSection {
-  height: 500px;
-  width: 1000px;
-  padding: 20px 0;
+  height: 75%;
+  width: 200%;
   display: flex;
   position: relative;
   transition: all 0.5s ease-in-out;
-  left: 0px;
-  margin-top: -110px;
+  
 }
 
 .form-section-move {
@@ -99,19 +90,16 @@ header {
 }
 
 .login-box,.signup-box{
-    height: 100%;
-    width: 150px;
+    height: 60%;
+    width: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 0px 40px ;
+    justify-content: center; 
+    padding: 50px;
+    margin-top:-20px;
 }
 
-
-
 .ele {
-  height: 60px;
-  width: 100%;
   outline: none;
   border: none;
   color: rgb(77, 77, 77);
@@ -124,28 +112,37 @@ header {
   height: 60px;
   width: 150px;
   border-radius: 50px;
-  background-image: linear-gradient(to right,
-          rgb(255, 195, 110),
-          rgb(255, 146, 91));
   font-size: 22px;
   border: none;
   cursor: pointer;
 }
 
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  top: 60px;
+  position: relative;
+  min-width: 390px;
+}
+
 @media screen and (max-width: 650px) {
-  .container {
-      height: 600px;
-      width: 300px;
+  
+  .line {
+    min-width: 190px;
+  }
+
+  .container{
+    height: 600px;
+    width: 300px;
   }
 
   .title {
-      font-size: 15px;
+    font-size: 15px;
   }
 
   .btn {
-      height: 50px;
-      width: 200px;
-      margin: 20px auto;
+    height: 50px;
+    width: 200px;
+    margin: 50px auto;
   }
 
   .login,
@@ -154,144 +151,74 @@ header {
   }
 
   .slider {
-      height: 50px;
-      width: 100px;
-      left: 50px;
+    height: 50px;
+    width: 100px;
+    right: 50px;
   }
 
   .moveslider {
-      left: 150px;
+    left: 150px;
   }
-
-  .form-section {
-      height: 500px;
-      width: 600px;
-  }
-
   .form-section-move {
-      left: -300px;
+    left: -300px;
   }
 
   .login-box,
   .signup-box {
-      height: 100%;
-      width: 300px;
+      width: 200px
   }
-
-  .ele {
-      height: 50px;
-      width: 250px;
-      font-size: 15px;
+  .el {
+    font-size: 10px;
   }
 
   .clkbtn {
-      height: 50px;
-      width: 130px;
-      font-size: 19px;
+    height: 50px;
+    width: 130px;
+    font-size: 19px;
   }
-}
+  .form-section-move {
+  left: 500px;
+  }
 
-
-.form-section-move {
-  left: -300px;
-}
-
-.moveslider {
+  .moveslider {
   left: 150px;
+  }
+
+  .emai,.pass{
+    font-size: 10px;
+    top: -53px;
+  }
+
 }
 
-@media screen and (max-width: 320px) {
-  .container {
-      height: 600px;
-      width: 250px;
-  }
-
-  .heading {
-      font-size: 30px;
-  }
-
-  .title {
-      font-size: 10px;
-  }
-
-  .btn {
-      height: 50px;
-      width: 200px;
-      margin: 20px auto;
-  }
-
-  .login,
-  .signup {
-      font-size: 19px;
-  }
-
-  .slider {
-      height: 50px;
-      width: 100px;
-      left: 27px;
-  }
-
-  .moveslider {
-      left: 127px;
-  }
-
-  .form-section {
-      height: 500px;
-      width: 500px;
-  }
-
-  .form-section-move {
-      left: -250px;
-  }
-
-  .login-box,
-  .signup-box {
-      height: 100%;
-      width: 250px;
-  }
-
-  .ele {
-      height: 50px;
-      width: 220px;
-      font-size: 15px;
-  }
-
-  .clkbtn {
-      height: 50px;
-      width: 130px;
-      font-size: 19px;
-  }
-}
-
-.ele{
+.el{
   border: none;
-  width: 89%;
   padding: 10px 20px;
   display: block;
   height: 15px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0);
-  overflow: hidden;
   margin-top: 15px;
   transition: all 0.5s ease-in-out;
+  font-size: 18px;
 }
 
-.ele:focus {
+.el:focus {
   outline: 0;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   background: rgba(0, 0, 0, 0);
 }
 
-.ele:focus + span {
+.el:focus + span {
   opacity: 0.6;
 }
 
 input[type="text"],
 input[type="password"] {
   font-family: 'Montserrat', sans-serif;
-  color: #fff;
+  color: #fff; 
 }
 
 input {
@@ -307,7 +234,7 @@ span {
   opacity: 0.4; 
   display: inline-block;
   position: relative;
-  top: -58px;
+  top: -56px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -336,13 +263,6 @@ span,.custom-checkbox {
 }
 .clkbtn:focus {
   outline: none;
-}
-
-hr {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  top: 60px;
-  position: relative;
-  width: 400px;
 }
 
 a {

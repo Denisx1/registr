@@ -9,12 +9,12 @@ export const FormR = ({ submitTitle, }: { submitTitle: any}) => {
   const { store } = useContext(Context);
   return (
     <div className="signup-box">
-        <input className="email ele" onChange={e => setEmail(e.target.value)}
+        <input className="email el" onChange={e => setEmail(e.target.value)}
         value={email}
         type="text"
         placeholder="Email" />
         <span>email</span>
-        <input className="password ele"
+        <input className="password el"
         onChange={e => setPassword(e.target.value)}
         value={password}
         type="password"
@@ -24,7 +24,7 @@ export const FormR = ({ submitTitle, }: { submitTitle: any}) => {
         Register
         </button>
         <hr/>
-        {submitTitle == 'signup' && <a href="#">hello</a>}
+        <a href="#">hello</a>
     </div>
   );
 };
