@@ -2,8 +2,7 @@ import React, { FC, useContext, useState } from "react";
 import { Context } from "../index";
 import "./index.css";
 
-
-export const Form = ({ submitTitle }:{submitTitle: string}) => {
+export const Form = ({ submitTitle }: { submitTitle: string }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { store } = useContext(Context);
@@ -28,11 +27,8 @@ export const Form = ({ submitTitle }:{submitTitle: string}) => {
       <button onClick={() => store.login(email, password)} className="clkbtn">
         Login
       </button>
-      <hr className="line"/>
-     <a href="#">forgot password?</a>
-      
+      <hr className="line" />
+      <a href="#">forgot password?</a>
     </div>
-
-    
   );
 };

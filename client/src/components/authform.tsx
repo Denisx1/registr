@@ -1,34 +1,22 @@
-import React, {FC, useContext, useState} from 'react';
-import {Context} from "../index";
-import {observer} from "mobx-react-lite";
+import React, { FC, useContext, useState } from "react";
+import { Context } from "../index";
+import { observer } from "mobx-react-lite";
 import { Form } from "./form";
-import { FormR } from './register'
-
+import { FormR } from "./register";
+import ActionButton from "./actionButton";
 
 const LoginForm: FC = () => {
-
-    const [conditionForm, setConditionForm] = useState(false);
-    const {store} = useContext(Context);
-    return (
-        <div className="container">
-          <div className="slider"></div>
-          <div className="btn">
-            <button className='login' onClick={() => setConditionForm(true)}>
-              signin
-            </button>
-
-            <button className='signup' onClick={() => setConditionForm(false)}>
-              signup
-            </button>
-
-        </div>
-        <div className="formSection">
-        <Form submitTitle={conditionForm ? "login" : 'signup'} />
-        <FormR submitTitle={!conditionForm ? "signup" : 'login'} />
-        
-        </div>
+  const [conditionForm] = useState(false);
+  const { store } = useContext(Context);
+  return (
+    <div className="container"> 
+        <ActionButton actionBtnTitle={["login", "signup"]} />
+      <div className="formSection">
+        <Form submitTitle={conditionForm ? "login" : "signup"} />
+        <FormR submitTitle={!conditionForm ? "signup" : "login"} />
       </div>
-    );
+    </div>
+  );
 };
 
 export default observer(LoginForm);

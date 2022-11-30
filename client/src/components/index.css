@@ -40,17 +40,6 @@ header {
   border-radius: 20px;
 }
 
-.btn {
-  height: 60px;
-  width: 300px;
-  margin: 50px auto;
-  box-shadow: 10px 10px 30px rgb(61, 65, 141);
-  border-radius: 50px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .login,.signup{
   font-size: 22px;
   position: relative;
@@ -60,16 +49,6 @@ header {
   position: relative;
   cursor: pointer;
   z-index: 1000;
-}
-
-.slider {
-  height: 60px;
-  width: 150px;
-  border-radius: 50px;
-  background-color: #1161ed;
-  position: absolute;
-  transition: all 0.5s ease-in-out;
-  margin: 50px 100px;
 }
 
 .moveslider{
@@ -97,98 +76,6 @@ header {
     justify-content: center; 
     padding: 50px;
     margin-top:-20px;
-}
-
-.ele {
-  outline: none;
-  border: none;
-  color: rgb(77, 77, 77);
-  background-color: rgb(240, 240, 240);
-  border-radius: 50px;
-  font-size: 18px;
-}
-
-.clkbtn {
-  height: 60px;
-  width: 150px;
-  border-radius: 50px;
-  font-size: 22px;
-  border: none;
-  cursor: pointer;
-}
-
-hr {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  top: 60px;
-  position: relative;
-  min-width: 390px;
-}
-
-@media screen and (max-width: 650px) {
-  
-  .line {
-    min-width: 190px;
-  }
-
-  .container{
-    height: 600px;
-    width: 300px;
-  }
-
-  .title {
-    font-size: 15px;
-  }
-
-  .btn {
-    height: 50px;
-    width: 200px;
-    margin: 50px auto;
-  }
-
-  .login,
-  .signup {
-      font-size: 19px;
-  }
-
-  .slider {
-    height: 50px;
-    width: 100px;
-    right: 50px;
-  }
-
-  .moveslider {
-    left: 150px;
-  }
-  .form-section-move {
-    left: -300px;
-  }
-
-  .login-box,
-  .signup-box {
-      width: 200px
-  }
-  .el {
-    font-size: 10px;
-  }
-
-  .clkbtn {
-    height: 50px;
-    width: 130px;
-    font-size: 19px;
-  }
-  .form-section-move {
-  left: 500px;
-  }
-
-  .moveslider {
-  left: 150px;
-  }
-
-  .emai,.pass{
-    font-size: 10px;
-    top: -53px;
-  }
-
 }
 
 .el{
@@ -254,6 +141,7 @@ span,.custom-checkbox {
   transition: all 0.5s ease-in-out;
   border: none;
   text-transform: uppercase;
+  font-size: 22px;
 }
 
 .clkbtn:hover {
@@ -265,6 +153,13 @@ span,.custom-checkbox {
   outline: none;
 }
 
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  top: 60px;
+  position: relative;
+  min-width: 390px;
+}
+
 a {
   text-align: center;
   display: block;
@@ -274,3 +169,49 @@ a {
   color: rgba(255, 255, 255, 0.2);
 }
 
+@media screen and (max-width: 650px) {
+  
+  .line {
+    min-width: 190px;
+  }
+
+  .container{
+    height: 600px;
+    width: 300px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  
+  .form-section-move {
+    left: -300px;
+  }
+
+  .login-box,
+  .signup-box {
+      width: 200px;
+      margin: -25px auto;
+  }
+
+  .el {
+    font-size: 11px;
+  }
+
+  .clkbtn {
+    height: 40px;
+    width: 100%;
+    font-size: 19px;
+  }
+
+  .form-section-move {
+  left: 500px;
+  }
+
+  .emai,.pass{
+    font-size: 10px;
+    top: -53px;
+  }
+
+}
