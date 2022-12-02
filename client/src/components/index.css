@@ -1,8 +1,7 @@
-@import url(
-"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-body{
-  font-family: 'Montserrat', sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
   color: #fff;
   font-size: 14px;
   letter-spacing: 1px;
@@ -33,14 +32,16 @@ header {
 .container {
   height: 600px;
   width: 500px;
-  background: url(https://picsum.photos/id/1004/5616/3744) no-repeat   center center #505050;
+  background: url(https://picsum.photos/id/1004/5616/3744) no-repeat center
+    center #505050;
   box-shadow: 8px 8px 20px rgb(128, 128, 128);
   position: relative;
   overflow: hidden;
   border-radius: 20px;
 }
 
-.login,.signup{
+.login,
+.signup {
   font-size: 22px;
   position: relative;
   border: none;
@@ -51,7 +52,7 @@ header {
   z-index: 1000;
 }
 
-.moveslider{
+.moveslider {
   left: 150px;
 }
 
@@ -61,24 +62,24 @@ header {
   display: flex;
   position: relative;
   transition: all 0.5s ease-in-out;
-  
 }
 
 .form-section-move {
   left: -500px;
 }
 
-.login-box,.signup-box{
-    height: 60%;
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    padding: 50px;
-    margin-top:-20px;
+.login-box,
+.signup-box {
+  height: 60%;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  margin-top: -20px;
 }
 
-.el{
+.el {
   border: none;
   padding: 10px 20px;
   display: block;
@@ -104,8 +105,8 @@ header {
 
 input[type="text"],
 input[type="password"] {
-  font-family: 'Montserrat', sans-serif;
-  color: #fff; 
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
 }
 
 input {
@@ -118,20 +119,21 @@ input {
 span {
   text-transform: uppercase;
   font-size: 12px;
-  opacity: 0.4; 
+  opacity: 0.4;
   display: inline-block;
   position: relative;
   top: -56px;
   transition: all 0.5s ease-in-out;
 }
 
-span,.custom-checkbox {
+span,
+.custom-checkbox {
   margin-left: 20px;
 }
 
 .clkbtn {
   background-color: #1161ed;
-  color: #FFF;
+  color: #fff;
   width: 100%;
   padding: 10px 20px;
   display: block;
@@ -170,12 +172,11 @@ a {
 }
 
 @media screen and (max-width: 650px) {
-  
   .line {
     min-width: 190px;
   }
 
-  .container{
+  .container {
     height: 600px;
     width: 300px;
   }
@@ -184,15 +185,14 @@ a {
     font-size: 15px;
   }
 
-  
   .form-section-move {
     left: -300px;
   }
 
   .login-box,
   .signup-box {
-      width: 200px;
-      margin: -25px auto;
+    width: 200px;
+    margin: -25px auto;
   }
 
   .el {
@@ -206,12 +206,12 @@ a {
   }
 
   .form-section-move {
-  left: 500px;
+    left: 500px;
   }
 
-  .emai,.pass{
+  .emai,
+  .pass {
     font-size: 10px;
     top: -53px;
   }
-
 }

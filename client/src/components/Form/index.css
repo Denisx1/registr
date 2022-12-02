@@ -1,21 +1,19 @@
-.action-btn{
-    width: 300px;
-    height: 60px;
-    background-color: gray;
-    border-radius: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 10px 10px 30px rgb(61, 65, 141);
-    margin: 50px auto;
+.action-btn {
+  width: 300px;
+  height: 60px;
+  background-color: gray;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 10px 10px 30px rgb(61, 65, 141);
+  margin: 50px auto;
 }
 
 @media screen and (max-width: 650px) {
-  
-    .action-btn{
-      height: 50px;
-      width: 200px;
-      margin: 50px auto;
-    }
- 
+  .action-btn {
+    height: 50px;
+    width: 200px;
+    margin: 50px auto;
+  }
 }
