@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 
 
-const Button = ({ title, active, onHandleClick }:{title:any, active:boolean, onHandleClick:any}) => (
+const Button = ({ title, active, onHandleClick }:{title:string, active:boolean, onHandleClick:()=>void}) => (
   <div
     className={active ? "active-btn" + " container__btn" : "container__btn"}
     onClick={onHandleClick}
@@ -10,6 +10,7 @@ const Button = ({ title, active, onHandleClick }:{title:any, active:boolean, onH
     {title}
   </div>
 );
+
 
 export default Button;
 

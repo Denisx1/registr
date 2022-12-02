@@ -1,19 +1,29 @@
 import React, { FC, useContext, useState } from "react";
-import { Context } from "../index";
+
 import { observer } from "mobx-react-lite";
-import { Form } from "./form";
+// import { Form1 } from "./form";
 import { FormR } from "./register";
-import ActionButton from "./actionButton";
+import { Form1 } from './form1'
+import Form from './Form';
 
 const LoginForm: FC = () => {
-  const [conditionForm] = useState(false);
-  const { store } = useContext(Context);
+
+  const [actionBtn, setActionBtn] = useState([
+    { signup: false },
+    { login: true },
+  ]);
+
+
   return (
-    <div className="container"> 
-        <ActionButton actionBtnTitle={["login", "signup"]} />
+    <div className="container">
+      <Form 
+        headerBtnTitle={["signup", "login"]}
+        activeCondition={actionBtn}
+        handlerCondition={setActionBtn} />
       <div className="formSection">
-        <Form submitTitle={conditionForm ? "login" : "signup"} />
-        <FormR submitTitle={!conditionForm ? "signup" : "login"} />
+        <Form1/>
+        <FormR/>
+      
       </div>
     </div>
   );

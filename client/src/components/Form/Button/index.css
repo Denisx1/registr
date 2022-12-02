@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     transition: all .75s ease-in-out;
-    
 }
 
 .container__btn{
@@ -21,11 +20,9 @@
     .container__btn{
         font-size: 19px;
     }
-
-    
 }
 
-@keyframes orangeBoll {
+@keyframes orangeBall {
     0%{
         transform: translateX(-25%);
         opacity: 0;

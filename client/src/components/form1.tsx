@@ -2,7 +2,7 @@ import React, { FC, useContext, useState } from "react";
 import { Context } from "../index";
 import "./index.css";
 
-export const Form = ({ submitTitle }: { submitTitle: string }) => {
+export const Form1 = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { store } = useContext(Context);
