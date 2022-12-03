@@ -1,5 +1,6 @@
 export const changeCondition = (condition: [], flag: string, handler: any) => {
   const keys = Object.values(condition);
+
   const newArray = condition.map((cond: object) => {
     const [key] = Object.keys(cond);
     if (key.includes(flag)) {
@@ -10,14 +11,15 @@ export const changeCondition = (condition: [], flag: string, handler: any) => {
   handler(newArray);
 };
 
-export const changetwoCondition = (defaultValue: object, handler: any) => {
+export const changetwoCondition = (defaultValue: object) => {
   const arr = Object.values(defaultValue).reduce((item, value) => ({
     ...item,
     ...value,
   }));
+
   for (const key in arr) {
     if (arr[key] == true) {
-      console.log(key);
+      // console.log(key)
       return key;
     }
   }

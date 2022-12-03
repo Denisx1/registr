@@ -5,24 +5,24 @@ import { observer } from "mobx-react-lite";
 import { FormR } from "./register";
 import { Form1 } from "./form1";
 import Form from "./Form";
+import "./index.css";
 
 const LoginForm: FC = () => {
   const [actionBtn, setActionBtn] = useState([
-    { signup: false },
     { login: true },
+    { signup: false },
   ]);
-
   return (
     <div className="container">
       <Form
-        headerBtnTitle={["signup", "login"]}
+        headerBtnTitle={["login", "signup"]}
+        input={{
+          login: ["email", "password"],
+          signup: ["email", "emailConfirm", "password", "confirmPassword"],
+        }}
         activeCondition={actionBtn}
         handlerCondition={setActionBtn}
       />
-      <div className="formSection">
-        <Form1 />
-        <FormR />
-      </div>
     </div>
   );
 };
