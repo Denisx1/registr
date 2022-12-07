@@ -1,1 +1,1 @@
-export const cls = (...className:any) => [...className].join(' ');
+export const cls = (...className: any) => [...className].join(" ");

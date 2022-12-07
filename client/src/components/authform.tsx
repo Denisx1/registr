@@ -1,9 +1,5 @@
 import React, { FC, useContext, useState } from "react";
-
 import { observer } from "mobx-react-lite";
-// import { Form1 } from "./form";
-import { FormR } from "./register";
-import { Form1 } from "./form1";
 import Form from "./Form";
 import "./index.css";
 
@@ -18,7 +14,7 @@ const LoginForm: FC = () => {
         headerBtnTitle={["login", "signup"]}
         inputTitle={{
           login: ["Email", "Password"],
-          signup: ["Name","Email", "Password"],
+          signup: ["Name", "Email", "Password"],
         }}
         activeCondition={actionBtn}
         handlerCondition={setActionBtn}

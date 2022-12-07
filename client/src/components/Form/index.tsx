@@ -16,6 +16,7 @@ const Form = ({
   activeCondition: any;
   handlerCondition: any;
 }) => {
+  
   const active: string = changetwoCondition(activeCondition) as string;
   return (
     <div className="container">
@@ -36,15 +37,20 @@ const Form = ({
         {Object.values(inputTitle[active]) &&
           Object.values(inputTitle[active]).map((input: any, index: number) => {
             return (
-                <><Input
-                key={index}
-                inputName={input}
-                placeholder={input}
-                active={active} />
-                <span className="spn">{input}</span></>    
+              <>
+                <Input
+                  key={index}
+                  inputName={input}
+                  type={input}
+                  placeholder={input}
+                  active={active}
+                />
+                <span className="spn">{input}</span>
+              </>
             );
           })}
       </div>
+      
     </div>
   );
 };

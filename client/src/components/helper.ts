@@ -24,7 +24,3 @@ export const changetwoCondition = (defaultValue: object) => {
     }
   }
 };
-
-
-
-
