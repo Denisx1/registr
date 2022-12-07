@@ -16,9 +16,9 @@ const LoginForm: FC = () => {
     <div className="container">
       <Form
         headerBtnTitle={["login", "signup"]}
-        input={{
-          login: ["email", "password"],
-          signup: ["email", "emailConfirm", "password", "confirmPassword"],
+        inputTitle={{
+          login: ["Email", "Password"],
+          signup: ["Name","Email", "Password"],
         }}
         activeCondition={actionBtn}
         handlerCondition={setActionBtn}

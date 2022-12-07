@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import "./index.css";
+import { Context } from "../../index";
 import { changeCondition, changetwoCondition } from "../helper";
 
 const Form = ({
   headerBtnTitle,
-  input,
+  inputTitle,
   activeCondition,
   handlerCondition,
 }: {
   headerBtnTitle: string[];
-  input: any;
+  inputTitle: any;
   activeCondition: any;
   handlerCondition: any;
 }) => {
-  const active: any = changetwoCondition(activeCondition);
-  console.log(active)
-  console.log(input[active]);
+  const active: string = changetwoCondition(activeCondition) as string;
   return (
-    <div>
+    <div className="container">
       {headerBtnTitle.length > 0 && (
         <div className="action-btn">
           {headerBtnTitle.map((title, index) => (
@@ -30,15 +29,22 @@ const Form = ({
                 changeCondition(activeCondition, title, handlerCondition);
               }}
             />
-            
           ))}
-          <Input
-              active={active}
-              onHandleClick={()=>{
-                console.log('1111')
-              }}/>
         </div>
       )}
+      <div className="form__input-container">
+        {Object.values(inputTitle[active]) &&
+          Object.values(inputTitle[active]).map((input: any, index: number) => {
+            return (
+                <><Input
+                key={index}
+                inputName={input}
+                placeholder={input}
+                active={active} />
+                <span className="spn">{input}</span></>    
+            );
+          })}
+      </div>
     </div>
   );
 };

@@ -79,58 +79,6 @@ header {
   margin-top: -20px;
 }
 
-.el {
-  border: none;
-  padding: 10px 20px;
-  display: block;
-  height: 15px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0);
-  margin-top: 15px;
-  transition: all 0.5s ease-in-out;
-  font-size: 18px;
-}
-
-.el:focus {
-  outline: 0;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0);
-}
-
-.el:focus + span {
-  opacity: 0.6;
-}
-
-input[type="text"],
-input[type="password"] {
-  font-family: "Montserrat", sans-serif;
-  color: #fff;
-}
-
-input {
-  display: inline-block;
-  margin-top: 100px;
-  padding-top: 20px;
-  font-size: 14px;
-}
-
-span {
-  text-transform: uppercase;
-  font-size: 12px;
-  opacity: 0.4;
-  display: inline-block;
-  position: relative;
-  top: -56px;
-  transition: all 0.5s ease-in-out;
-}
-
-span,
-.custom-checkbox {
-  margin-left: 20px;
-}
-
 .clkbtn {
   background-color: #1161ed;
   color: #fff;
