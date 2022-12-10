@@ -107,6 +107,39 @@ class UserService {
         return users
     }
 
+    getUserDynamycally = (
+        paramName = "_id",
+        where = "body",
+        dataBaseField = paramName
+      ) => {
+        return async (req, res, next) => {
+          try {
+            const findObject = req[where];
+            
+      
+            if (!findObject || typeof findObject !== "object") {
+              next(new ApiError.UnauthorizationError());
+              return;
+            }
+            const param = findObject[paramName];
+            
+            const userx = await UserModel.findOne({[dataBaseField]: param}).select('password')
+            
+            if (!userx) {
+              next(new ApiError.UnauthorizationError());
+              return;
+            }
+            console.log('111')
+    
+            req.user = userx;
+    
+            next();
+          } catch (e) {
+            next(e);
+          }
+        };
+      };
+
 }
 
 module.exports = new UserService()

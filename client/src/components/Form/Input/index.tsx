@@ -19,21 +19,25 @@ const Input = ({
   active: any;
   type: string;
 }) => {
-  const { store } = useContext(Context);
   const [value, setValue] = useState("");
   useEffect(() => {
     setValue("");
   }, [active]);
-  console.log(inputName, value);
+
   return (
-    <><>
-      <input
-        placeholder={placeholder}
-        value={value}
-        type={placeholder == "password" ? "password" : placeholder}
-        className={cls(...styles, "form-input")}
-        onChange={(e) => setValue(e.target.value)} />
-    </><button className="clkbtn">Login</button></>
+    <>
+      <>
+        <input
+          placeholder={placeholder}
+          value={value}
+          type={placeholder == "password" ? "password" : placeholder}
+          className={cls(...styles, "form-input")}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
+      </>
+    </>
   );
 };
 

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 .active-btn {
   background-color: #1161ed;
   border-radius: 50px;
@@ -11,6 +13,35 @@
   display: flex;
   justify-content: center;
   font-size: 22px;
+  text-transform: uppercase;
+}
+
+.active_lowerBtn {
+  background-color: #1161ed;
+  border-radius: 50px;
+  width: 80%;
+  padding: 0;
+  align-items: center;
+  text-transform: uppercase;
+  color: white;
+}
+
+.active_lowerBtn:hover {
+  background: #4082f5;
+  box-shadow: 0px 4px 35px -5px #4082f5;
+  cursor: pointer;
+}
+.active_lowerBtn:focus {
+  outline: none;
+}
+
+.lower-btn-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  border: none;
+  transition: all 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 650px) {
@@ -19,7 +50,7 @@
   }
 }
 
-/* @keyframes orangeBall {
+@keyframes orangeBall {
   0% {
     transform: translateX(-25%);
     opacity: 0;
@@ -28,4 +59,4 @@
     opacity: 1;
     transform: translateX(0);
   }
-} */
+}

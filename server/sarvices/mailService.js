@@ -24,7 +24,7 @@ class MailService {
             text: '',
             html:
                 `
-                    <div>
+                   <div>
                         <h1>Go to link</h1>
                         <a href="${link}">${link}</a>
                     </div>

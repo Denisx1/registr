@@ -18,6 +18,7 @@ const LoginForm: FC = () => {
         }}
         activeCondition={actionBtn}
         handlerCondition={setActionBtn}
+        lowerBtnClick={["login", "signup"]}
       />
     </div>
   );
