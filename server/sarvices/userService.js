@@ -107,6 +107,8 @@ class UserService {
         return users
     }
 
+    
+
     getUserDynamycally = (
         paramName = "_id",
         where = "body",

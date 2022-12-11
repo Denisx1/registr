@@ -3,6 +3,7 @@ const { CLIENT_URL } = require('../config/config')
 const {validationResult} = require('express-validator')
 const ApiError = require('../exceptions/apiError')
 
+
 class UserController {
     async registration(req, res, next) {
         try {
@@ -83,6 +84,15 @@ class UserController {
             
         } catch (e) {
             next(e)
+        }
+    }
+
+    async  forgotPassword (req, res, next){
+        try{
+            const { user } = req
+            console.log(user._id)
+        }catch(e){
+
         }
     }
 

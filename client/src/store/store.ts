@@ -39,6 +39,7 @@ export default class Store {
   }
 
   async registration(email: string, password: string) {
+    this.setLoading(true)
     try {
       const response = await AuthService.registration(email, password);
       console.log(response);
@@ -47,6 +48,8 @@ export default class Store {
       this.setUser(response.data.user);
     } catch (e) {
       console.log(e);
+    } finally {
+      this.setLoading(false);
     }
   }
 

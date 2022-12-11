@@ -17,14 +17,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 .form__input-container span {
   text-transform: uppercase;
-  
+  position: relative;
   font-size: 12px;
   opacity: 0.4;
   transition: all 0.5s ease-in-out;
   width: 70%;
+  top: -60px;
 }
 
 .form-lowerClickBtn {
@@ -40,10 +42,21 @@
 hr {
   margin-top: -5px;
   width: 80%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  top: 60px;
+  position: relative;
+  min-width: 390px;
 }
 
-a {
+p {
   margin-top: 15px;
+  text-align: center;
+  display: block;
+  top: 80px;
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 15px;
 }
 
 @media screen and (max-width: 650px) {
@@ -54,5 +67,12 @@ a {
   }
   .low-line {
     min-width: 190px;
+  }
+
+  .form__input-container span {
+    font-size: 11px;
+  }
+  p{
+    font-size: 13px;
   }
 }

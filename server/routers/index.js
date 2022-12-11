@@ -16,6 +16,7 @@ router.post('/logout', userController.logout)
 router.post('/password/forgot',
     body('email').isEmail(),
     userService.getUserDynamycally('email'),
+    userController.forgotPassword
     )
 router.get('/activated/:link', userController.activate)
 router.get('/refresh', userController.refresh)

@@ -1,19 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
-const LowerButton = ({
-  title,
-  active,
-  onHandleClick,
-}: {
-  title: string;
-  active: boolean;
-  onHandleClick: any;
-}) => (
+const LowerButton = ({ title, active }: { title: string; active: boolean }) => (
   <button
-    className={active ? "active_lowerBtn" + " lower-btn-container" : " lower-btn-container"}
-    onSubmit={onHandleClick}
-    type = 'submit'
+    className={
+      active
+        ? "active_lowerBtn" + " lower-btn-container"
+        : " lower-btn-container"
+    }
+    type="submit"
   >
     {title}
   </button>
