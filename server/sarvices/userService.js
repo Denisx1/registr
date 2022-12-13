@@ -1,147 +1,147 @@
-const UserModel = require('../models/userModel')
-const bctypt = require('bcrypt')
-const uuid = require('uuid')
-const mailService = require('./mailService')
-const tokenService = require('../sarvices/tokenService')
-const UserDto = require('../dtos/userDto')
-const { API_URL } = require('../config/config')
-const ApiError = require('../exceptions/apiError')
+const UserModel = require("../models/userModel");
+const bctypt = require("bcrypt");
+const uuid = require("uuid");
+const mailService = require("./mailService");
+const tokenService = require("../sarvices/tokenService");
+const UserDto = require("../dtos/userDto");
+const { API_URL } = require("../config/config");
+const ApiError = require("../exceptions/apiError");
 
 class UserService {
-    async registration(email, password) {
+  async registration(email, password) {
+    const candidate = await UserModel.findOne({ email });
 
-        const candidate = await UserModel.findOne({ email })
-
-        if (candidate) {
-            throw ApiError.badRequest(`Пользователь с почтовым адресом ${email} уже существует`)
-        }
-
-        const hashPassword = await bctypt.hash(password, 3)
-        const activationLink = uuid.v4()
-
-        const user = await UserModel.create({ email, password: hashPassword, activationLink })
-        await mailService.sendActivationMail(email, `${API_URL}/api/activated/${activationLink}`)
-
-
-        const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...userDto })
-        await tokenService.saveToken(userDto.id, tokens.refreshToken)
-
-        return {
-            ...tokens,
-            user: userDto
-        }
-
+    if (candidate) {
+      throw ApiError.badRequest(
+        `Пользователь с почтовым адресом ${email} уже существует`
+      );
     }
 
-    async activate(activationLink) {
+    const hashPassword = await bctypt.hash(password, 3);
+    const activationLink = uuid.v4();
 
-        const user = await UserModel.findOne({ activationLink })
+    const user = await UserModel.create({
+      email,
+      password: hashPassword,
+      activationLink,
+    });
+    await mailService.sendActivationMail(
+      email,
+      `${API_URL}/api/activated/${activationLink}`
+    );
 
-        if (!user) {
-            throw ApiError.badRequest('Uncorrectly link')
-        }
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
-        user.isActivated = true
-        await user.save()
+    return {
+      ...tokens,
+      user: userDto,
+    };
+  }
+
+  async activate(activationLink) {
+    const user = await UserModel.findOne({ activationLink });
+
+    if (!user) {
+      throw ApiError.badRequest("Uncorrectly link");
     }
 
-    async login(email, password) {
+    user.isActivated = true;
+    await user.save();
+  }
 
-        const user = await UserModel.findOne({ email })
+  async login(email, password) {
+    const user = await UserModel.findOne({ email });
 
-        if (!user) {
-            throw ApiError.badRequest('User is absent')
-        }
-
-        const isPassEquels = await bctypt.compare(password, user.password)
-
-        if (!isPassEquels) {
-            throw ApiError.badRequest('Password is failed')
-        }
-
-        const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...userDto })
-
-        await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        return {
-            ...tokens,
-            user: userDto
-        }
+    if (!user) {
+      throw ApiError.badRequest("User is absent");
     }
 
-    async logout(refreshToken) {
+    const isPassEquels = await bctypt.compare(password, user.password);
 
-        const token = await tokenService.removeToken(refreshToken)
-
-        return token
+    if (!isPassEquels) {
+      throw ApiError.badRequest("Password is failed");
     }
 
-    async refresh(refreshToken) {
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({ ...userDto });
 
-        if (!refreshToken) {
-            throw ApiError.UnauthorizationError()
-        }
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    return {
+      ...tokens,
+      user: userDto,
+    };
+  }
 
-        const userData = tokenService.validateRefreshToken(refreshToken)
-        const tokenfromDb = await tokenService.findToken(refreshToken)
+  async logout(refreshToken) {
+    const token = await tokenService.removeToken(refreshToken);
 
-        if (!userData || !tokenfromDb) {
-            throw ApiError.UnauthorizationError()
-        }
+    return token;
+  }
 
-        const user = await UserModel.findById(userData.id)
-        const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...userDto })
-        await tokenService.saveToken(userDto.id, tokens.refreshToken)
-
-        return {
-            ...tokens,
-            user: userDto
-        }
+  async refresh(refreshToken) {
+    if (!refreshToken) {
+      throw ApiError.UnauthorizationError();
     }
 
-    async getAllUsers() {
+    const userData = tokenService.validateRefreshToken(refreshToken);
+    console.log("111");
+    const tokenfromDb = await tokenService.findToken(refreshToken);
+    console.log(tokenfromDb);
 
-        const users = await UserModel.find()
-        return users
+    if (!userData || !tokenfromDb) {
+      throw ApiError.UnauthorizationError();
     }
 
-    
+    const user = await UserModel.findById(userData.id);
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
-    getUserDynamycally = (
-        paramName = "_id",
-        where = "body",
-        dataBaseField = paramName
-      ) => {
-        return async (req, res, next) => {
-          try {
-            const findObject = req[where];
-            
-      
-            if (!findObject || typeof findObject !== "object") {
-              next(new ApiError.UnauthorizationError());
-              return;
-            }
-            const param = findObject[paramName];
-            
-            const userx = await UserModel.findOne({[dataBaseField]: param}).select('password')
-            
-            if (!userx) {
-              next(new ApiError.UnauthorizationError());
-              return;
-            }
-            console.log('111')
-    
-            req.user = userx;
-    
-            next();
-          } catch (e) {
-            next(e);
-          }
-        };
-      };
+    return {
+      ...tokens,
+      user: userDto,
+    };
+  }
 
+  async getAllUsers() {
+    const users = await UserModel.find();
+    return users;
+  }
+
+  getUserDynamycally = (
+    paramName = "_id",
+    where = "body",
+    dataBaseField = paramName
+  ) => {
+    return async (req, res, next) => {
+      try {
+        const findObject = req[where];
+
+        if (!findObject || typeof findObject !== "object") {
+          next(new ApiError.UnauthorizationError());
+          return;
+        }
+        const param = findObject[paramName];
+
+        const userx = await UserModel.findOne({
+          [dataBaseField]: param,
+        }).select("password");
+
+        if (!userx) {
+          next(new ApiError.UnauthorizationError());
+          return;
+        }
+
+        req.user = userx;
+
+        next();
+      } catch (e) {
+        next(e);
+      }
+    };
+  };
 }
 
-module.exports = new UserService()
+module.exports = new UserService();
