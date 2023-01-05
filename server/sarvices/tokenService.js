@@ -1,6 +1,10 @@
 const jwt = require("jsonwebtoken");
 const tokenModel = require("../models/tokenModel");
-const { JWT_ACCESS_SECRET, JWT_REFRESH_SECRET } = require("../config/config");
+const {
+  JWT_ACCESS_SECRET,
+  JWT_REFRESH_SECRET,
+  JWT_ACTION_SECRET,
+} = require("../config/config");
 
 class TokenService {
   generateTokens(payload) {
@@ -18,6 +22,18 @@ class TokenService {
     };
   }
 
+  generateActionToken(encodeData = {}) {
+    return jwt.sign(encodeData, JWT_ACTION_SECRET, { expiresIn: "24h" });
+  }
+
+  validateActionToken(token){
+    try{
+      const updateData = jwt.verify(token, JWT_ACTION_SECRET)
+      return updateData
+    }catch(e){
+      return bull
+    }
+  }
   validateAccessToken(token) {
     try {
       const userData = jwt.verify(token, JWT_ACCESS_SECRET);

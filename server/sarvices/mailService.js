@@ -34,15 +34,17 @@ class MailService {
     });
   }
 
-  async forgotPasswordSendMail(to, link) {
+  async forgotPasswordSendMail(to, linkin) {
     await this.tranporter.sendMail({
       from: SMTP_USER,
       to,
       subject: "forgot password" + API_URL,
-      text: `
+      text:'',
+      html:
+            `
             <div>
                  <h1>Go to link</h1>
-                 <a href="${link}">${link}</a>
+                 <a href=${linkin}><button >Push me</button></a>
              </div>
             `,
     });

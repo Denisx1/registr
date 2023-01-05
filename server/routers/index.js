@@ -23,10 +23,7 @@ router.post(
   userController.forgotPassword
 );
 
-router.patch(
-  "/password/forgot",
-  userController.checkActionToken
-);
+router.patch("/password/forgot",userService.checkActionToken(actionTypeEnum.FORGOT_PASSWORD), userController.setPasswordAfterForgot)
 router.get("/activated/:link", userController.activate);
 router.get("/refresh", userController.refresh);
 router.get("/users", authMiddleware, userController.getUser);

@@ -19,7 +19,7 @@ app.use(errorMiddleware)
 
 const start = async () => {
     try {
-        await mongoose.connect(MONGO_URL)
+        await mongoose.connect(MONGO_URL).then(console.log('111'))
         app.listen(PORT, () => console.log(`Server started on ${PORT} PORT`))
     } catch (e) {
         console.log(e)

@@ -86,9 +86,7 @@ class UserService {
     }
 
     const userData = tokenService.validateRefreshToken(refreshToken);
-    console.log("111");
     const tokenfromDb = await tokenService.findToken(refreshToken);
-    console.log(tokenfromDb);
 
     if (!userData || !tokenfromDb) {
       throw ApiError.UnauthorizationError();
@@ -102,6 +100,19 @@ class UserService {
     return {
       ...tokens,
       user: userDto,
+    };
+  }
+
+  checkActionToken(tokenType) {
+    return async function (req, res, next) {
+      try {
+        const { token } = req.body;
+        tokenService.validateActionToken(token);
+        
+        req.user = token
+      } catch (e) {
+        next(e);
+      }
     };
   }
 
@@ -135,7 +146,6 @@ class UserService {
         }
 
         req.user = userx;
-
         next();
       } catch (e) {
         next(e);

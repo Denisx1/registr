@@ -6,6 +6,8 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  position: relative;
+  animation: mymove 3s;
 }
 
 .container__btn {
@@ -14,6 +16,7 @@
   justify-content: center;
   font-size: 22px;
   text-transform: uppercase;
+  position: static;
 }
 
 .active_lowerBtn {
@@ -45,18 +48,15 @@
 }
 
 @media screen and (max-width: 650px) {
-  .container__btn{
+  .container__btn {
     font-size: 17px;
   }
 }
-
-@keyframes orangeBall {
+@keyframes mymove {
   0% {
-    transform: translateX(-25%);
-    opacity: 0;
+    left: 23px;
   }
   100% {
-    opacity: 1;
-    transform: translateX(0);
+    left: 150px;
   }
 }

@@ -6,6 +6,7 @@ module.exports = {
 
   JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET,
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
+  JWT_ACTION_SECRET: process.env.JWT_ACTION_TOKEN_SECRET,
 
   SMTP_HOST: process.env.SMTP_HOST,
   SMTP_PORT: process.env.SMTP_PORT,
@@ -14,5 +15,5 @@ module.exports = {
 
   API_URL: process.env.API_URL,
   CLIENT_URL: process.env.CLIENT_URL,
-  CLIENT_PROB_URL: process.env.CLIENT_PROB_URL,
+  CLIENT_PROB_URL: process.env.CLIENT_FORGOT_PASSWORD,
 };

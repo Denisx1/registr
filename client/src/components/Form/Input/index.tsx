@@ -28,6 +28,7 @@ const Input = ({
   return (
     <input
       placeholder={placeholder}
+      autoComplete={'off'}
       value={value}
       type={placeholder == "password" ? "password" : placeholder}
       className={cls(...styles, "form-input")}

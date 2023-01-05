@@ -1,12 +1,11 @@
 const userService = require("../sarvices/userService");
-const { CLIENT_URL } = require("../config/config");
-const { validationResult } = require("express-validator");
+const { CLIENT_URL, CLIENT_PROB_URL } = require("../config/config");
 const ApiError = require("../exceptions/apiError");
 const tokenService = require("../sarvices/tokenService");
-const UserDto = require("../dtos/userDto");
 const mailService = require("../sarvices/mailService");
+const userModel = require("../models/userModel");
 const tokenModel = require("../models/tokenModel");
-const { findToken } = require("../sarvices/tokenService");
+const bcrypt = require("bcrypt");
 
 class UserController {
   async registration(req, res, next) {
@@ -87,16 +86,6 @@ class UserController {
     }
   }
 
-  async checkActionToken(req, res, next) {
-    try {
-      const { refreshToken } = req.cookies;
-      const usertokenData = await userService.refresh(refreshToken) 
-      console.log(usertokenData)
-    } catch (e) {
-      next(e);
-    }
-  }
-
   async getUser(req, res, next) {
     try {
       const users = await userService.getAllUsers();
@@ -108,19 +97,32 @@ class UserController {
 
   async forgotPassword(req, res, next) {
     try {
-      const { user } = req;
-      const { email } = req.body;
+      const {
+        user,
+        body: { email },
+      } = req;
 
-      const userDto = new UserDto(user);
-      const token = tokenService.generateTokens({ ...userDto });
-      await tokenService.saveToken(userDto.id, token.refreshToken);
-      const forgotPasswordUrl = `${CLIENT_URL}/password/forgot?token=${token.accessToken}`;
-
+      const token = tokenService.generateActionToken({ user: user._id });
+      await tokenService.saveToken(user._id, token);
+      const forgotPasswordUrl = `${CLIENT_PROB_URL}/password/forgot?token=${token}`;
       await mailService.forgotPasswordSendMail(email, forgotPasswordUrl);
 
       res.json("ok");
     } catch (e) {
-      nwxt(e);
+      next(e);
+    }
+  }
+
+  async setPasswordAfterForgot(req, res, next) {
+    try {
+      const { user, body } = req;
+      console.log(user, body);
+      const newPassword = await bcrypt.hash(body.password, 3);
+      await userModel.updateOne({ _id: user._id }, { password: newPassword });
+      await tokenModel.deleteMany({ user_id: user._id });
+      res.json("ok");
+    } catch (e) {
+      console.log(e);
     }
   }
 }
