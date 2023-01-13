@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import { makeAutoObservable } from "mobx";
+import  UserService from '../services/userService'
 import { IUser } from "../models/user";
 import AuthService from "../services/authService";
 import axios from "axios";
@@ -39,7 +41,7 @@ export default class Store {
   }
 
   async registration(email: string, password: string) {
-    this.setLoading(true)
+    this.setLoading(true);
     try {
       const response = await AuthService.registration(email, password);
       localStorage.setItem("token", response.data.accessToken);
@@ -79,4 +81,5 @@ export default class Store {
       this.setLoading(false);
     }
   }
+  
 }
