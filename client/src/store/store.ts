@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { makeAutoObservable } from "mobx";
 import  UserService from '../services/userService'
-import { IUser } from "../models/user";
+import { IUser } from '../models/user';
 import AuthService from "../services/authService";
 import axios from "axios";
 import { AuthResponse } from "../models/response/authResponse";
 import { API_URL } from "../http";
 
+
 export default class Store {
+ 
   user = {} as IUser;
   isAuth = false;
   isLoading = false;
@@ -81,5 +83,6 @@ export default class Store {
       this.setLoading(false);
     }
   }
+  
   
 }

@@ -8,7 +8,7 @@ const MainPage: FC = () => {
     <div className="navbar">
       <Page
         navbarTitle={["login", "signup", "login", "signup"]}
-        navbarButtonClick={["Logout", "GetUsers"]}
+        navbarButtonClick={["GetUser", "Logout"]}
       />
     </div>
   );

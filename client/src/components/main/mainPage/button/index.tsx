@@ -11,12 +11,12 @@ const Button = ({
   
   onHandleClick: () => void;
 }) => (
-  <div
+  <button
     className={"btn"}
     onClick={onHandleClick}
   >
     {title}
-  </div>
+  </button>
 );
 
 export default Button;
