@@ -1,11 +1,44 @@
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 55px;
-    
-    border-radius: 10px;
+.body2 {
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d3d3d3;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 55px;
+  border-radius: 10px;
+}
+.main {
+  background-color: blue;
+  width: 60%;
+  height: 500px;
+}
+.item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.item1{
+  background-image: url('.././images/user_62c05201c443473b27c1810f_da59469d-6126-4620-be40-131d75cc026d.jpg');
+}
+.item2{
+  background-color: coral
+}
+.item3{
+  background-color: darkolivegreen
 }

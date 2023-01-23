@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { IUser } from "../../../models/user";
-import UserService from "../../../services/userService";
+import { IUser } from "../../../../models/user";
+import UserService from "../../../../services/userService";
 import Paragraphs from "./paragraphs";
 import Button from "./button";
-import { Context } from "../../../index";
+import { Context } from "../../../../index";
 import "./index.css";
 
 const Page = ({
@@ -13,16 +13,7 @@ const Page = ({
   navbarTitle: string[];
   navbarButtonClick: string[];
 }) => {
-  const [users, setUsers] = useState<IUser[]>([]);
-
-  async function getUsers() {
-    try {
-      const response = await UserService.fetchUsers();
-      setUsers(response.data);
-    } catch (e) {
-      console.log();
-    }
-  }
+  
   const { store } = useContext(Context);
   return (
     <>
@@ -43,14 +34,14 @@ const Page = ({
               <Button
                 title={title}
                 onHandleClick={() => {
-                  return title == "Logout" ? store.logout() : getUsers();
+                  return title == "Logout" ? store.logout() : '';
                 }}
               />
             ))}
+            
           </div>
         )}
       </div>
-      {users.map(user=><div key={user.email}>{user.email}</div>)}
     </>
   );
 };

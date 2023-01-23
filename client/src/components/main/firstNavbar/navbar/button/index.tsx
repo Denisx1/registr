@@ -1,20 +1,14 @@
 import React from "react";
-import './index.css'
-
+import "./index.css";
 
 const Button = ({
   title,
-  
   onHandleClick,
 }: {
   title: string;
-  
   onHandleClick: () => void;
 }) => (
-  <button
-    className={"btn"}
-    onClick={onHandleClick}
-  >
+  <button className={"btn"} onClick={onHandleClick}>
     {title}
   </button>
 );

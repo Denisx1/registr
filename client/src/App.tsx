@@ -23,14 +23,16 @@ const App: FC = () => {
 
   if (!store.isAuth) {
     return (
-      <div className="body">
+      <div className="body1">
         <LoginForm />
       </div>
     );
   }
 
   return (
+    <div className="body2">
       <MainPage />
+    </div>
   );
 };
 
