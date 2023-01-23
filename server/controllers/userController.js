@@ -13,8 +13,10 @@ class UserController {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
+        console.log(error)
         return next(
           ApiError.badRequest("Validation is failed", errors.array())
+          
         );
       }
 
