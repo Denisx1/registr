@@ -24,3 +24,55 @@ export const changetwoCondition = (defaultValue: object) => {
     }
   }
 };
+
+
+
+// const salaries2 = {
+//   TeamLead: { salary: 1000, tax: "99%" },
+//   Architect: { salary: 9000, tax: "34%" },
+// };
+// const team2 = [
+//   { name: "Alexander", specialization: "TeamLead" },
+//   { name: "Gaudi", specialization: "Architect" },
+//   { name: "Koolhas", specialization: "Architect" },
+//   { name: "Foster", specialization: "Architect" },
+//   { name: "Napoleon", specialization: "General" },
+// ];
+
+// const totalSalary = (staff) =>
+//   staff.reduce((acc, pos) => {
+//     const key = Object.keys(pos);
+//     const { salary, tax } = pos[key];
+//     const taxValue = 1 + parseFloat(tax) / 100;
+//     return acc + salary * taxValue;
+//   }, 0);
+
+// function calculateTeamFinanceReport(salaries, team) {
+//   const keys = Object.keys(salaries);
+//   const staff = team.map(({ specialization }) => ({
+//     [specialization]: salaries[specialization],
+//   }));
+//   const ress = Object.values(staff).filter(
+//     (el) => keys.includes(Object.keys(el)[0]) && el
+//   );
+
+//   const filter = team.filter((el) => keys.includes(el.specialization));
+//   const value = filter.reduce((acc, { specialization: spec }) => {
+//     const prefix = `totalBudget${spec}`;
+//     const { salary, tax } = salaries[spec];
+//     const taxValue = 1 + parseFloat(tax) / 100;
+
+//     if (Object.hasOwn(acc, prefix)) {
+//       return { ...acc, [prefix]: acc[prefix] * taxValue + salary * taxValue };
+//     }
+//     return { ...acc, [prefix]: salary * Math.round(taxValue) };
+//   }, {});
+
+//   return {
+//     totalBudget: totalSalary(ress),
+//     ...value,
+//   };
+// }
+
+// const result = calculateTeamFinanceReport(salaries2, team2);
+// console.log(JSON.stringify(result));
