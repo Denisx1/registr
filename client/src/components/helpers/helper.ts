@@ -76,3 +76,46 @@ export const changetwoCondition = (defaultValue: object) => {
 
 // const result = calculateTeamFinanceReport(salaries2, team2);
 // console.log(JSON.stringify(result));
+
+// const indexArray = new Proxy(Array, {
+//   construct(target, [args]) {
+//     const index = {};
+//     args.forEach((item) => index[item.name]);
+
+//     return new Proxy(new target(...args), {
+//       get(arr, prop) {
+//         switch (prop) {
+//           case "push":
+//             return (item) => {
+//               index[item.name] = item;
+//               arr[prop].call(arr, item);
+//             };
+//           case "findBySpecialization":
+//             return (specialization) => index[specialization];
+//           default:
+//             return arr[prop];
+//         }
+//       },
+//     });
+//   },
+// });
+// const salaries2 = {
+//   TeamLead: { salary: 1000, tax: "99%" },
+//   Architect: { salary: 9000, tax: "34%" },
+// };
+
+// const team2 = [
+//   { name: "Alexander", specialization: "TeamLead" },
+//   { name: "Gaudi", specialization: "Architect" },
+//   { name: "Koolhas", specialization: "Architect" },
+//   { name: "Foster", specialization: "Architect" },
+//   { name: "Napoleon", specialization: "General" },
+// ];
+//   const keys = Object.keys(salaries2);
+//   const staff = team2.map(({ specialization }) => ({
+//     [specialization]: salaries2[specialization],
+//   }));
+
+//   const ress = new indexArray (staff)
+//   console.log(ress[2])
+
