@@ -6,6 +6,7 @@ const mailService = require("../sarvices/mailService");
 const userModel = require("../models/userModel");
 const tokenModel = require("../models/tokenModel");
 const bcrypt = require("bcrypt");
+const UserDto = require("../dtos/userDto");
 
 class UserController {
   async registration(req, res, next) {
@@ -13,10 +14,9 @@ class UserController {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        console.log(error)
+        console.log(error);
         return next(
           ApiError.badRequest("Validation is failed", errors.array())
-          
         );
       }
 
@@ -100,31 +100,38 @@ class UserController {
   async forgotPassword(req, res, next) {
     try {
       const {
-        user,
+        user: { id },
         body: { email },
       } = req;
 
-      const token = tokenService.generateActionToken({ user: user._id });
-      await tokenService.saveToken(user._id, token);
-      const forgotPasswordUrl = `${CLIENT_PROB_URL}/password/forgot?token=${token}`;
-      await mailService.forgotPasswordSendMail(email, forgotPasswordUrl);
+      const token = tokenService.generateActionToken({ userId: id });
 
+      await tokenService.saveToken(id, token);
+
+      const forgotPasswordUrl = `${CLIENT_PROB_URL}/password/forgot?token=${token}`;
+
+      await mailService.forgotPasswordSendMail(email, forgotPasswordUrl);
       res.json("ok");
     } catch (e) {
       next(e);
     }
   }
-
   async setPasswordAfterForgot(req, res, next) {
     try {
-      const { user, body } = req;
-      console.log(user, body);
-      const newPassword = await bcrypt.hash(body.password, 3);
-      await userModel.updateOne({ _id: user._id }, { password: newPassword });
-      await tokenModel.deleteMany({ user_id: user._id });
+      const {
+        user,
+        body: { password, token },
+      } = req;
+
+      const userDto = new UserDto(user);
+      const newPassword = await bcrypt.hash(password, 3);
+      
+      await userService.updatePassword(userDto.id, newPassword);
+
+      await tokenService.removeToken(token);
       res.json("ok");
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 }

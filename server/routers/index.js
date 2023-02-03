@@ -16,14 +16,18 @@ router.post(
 
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
+
 router.post(
   "/password/forgot",
-  body("email").isEmail(),
   userService.getUserDynamycally("email"),
   userController.forgotPassword
 );
+router.patch(
+  "/password/forgot",
+  userService.checkActionToken(),
+  userController.setPasswordAfterForgot
+);
 
-router.patch("/password/forgot",userService.checkActionToken(actionTypeEnum.FORGOT_PASSWORD), userController.setPasswordAfterForgot)
 router.get("/activated/:link", userController.activate);
 router.get("/refresh", userController.refresh);
 router.get("/users", authMiddleware, userController.getUser);

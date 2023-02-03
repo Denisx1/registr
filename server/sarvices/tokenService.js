@@ -26,12 +26,12 @@ class TokenService {
     return jwt.sign(encodeData, JWT_ACTION_SECRET, { expiresIn: "24h" });
   }
 
-  validateActionToken(token){
-    try{
-      const updateData = jwt.verify(token, JWT_ACTION_SECRET)
-      return updateData
-    }catch(e){
-      return bull
+  validateActionToken(token) {
+    try {
+      const updateData = jwt.verify(token, JWT_ACTION_SECRET);
+      return updateData;
+    } catch (e) {
+      return null;
     }
   }
   validateAccessToken(token) {
@@ -68,7 +68,12 @@ class TokenService {
   }
 
   async findToken(refreshToken) {
-    const tokenDate = await tokenModel.findOne({ refreshToken });
+    const tokenDate = await tokenModel
+      .findOne({ refreshToken }).populate('_id')
+      if(!tokenDate|| !tokenDate._id){
+        return next(new ApiError('Token not valid'), 403)
+      }
+      
     return tokenDate;
   }
 }

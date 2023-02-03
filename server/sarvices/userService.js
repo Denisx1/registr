@@ -6,6 +6,8 @@ const tokenService = require("../sarvices/tokenService");
 const UserDto = require("../dtos/userDto");
 const { API_URL } = require("../config/config");
 const ApiError = require("../exceptions/apiError");
+const tokenModel = require("../models/tokenModel");
+const { populate } = require("../models/tokenModel");
 
 class UserService {
   async registration(email, password) {
@@ -103,17 +105,9 @@ class UserService {
     };
   }
 
-  checkActionToken(tokenType) {
-    return async function (req, res, next) {
-      try {
-        const { token } = req.body;
-        tokenService.validateActionToken(token);
-        
-        req.user = token
-      } catch (e) {
-        next(e);
-      }
-    };
+  async updatePassword(id, newPassword){
+    const update = await UserModel.updateOne({_id:id}, {password: newPassword})
+    return update
   }
 
   async getAllUsers() {
@@ -144,7 +138,6 @@ class UserService {
           next(new ApiError.UnauthorizationError());
           return;
         }
-
         req.user = userx;
         next();
       } catch (e) {
@@ -152,6 +145,22 @@ class UserService {
       }
     };
   };
+  checkActionToken() {
+    return async function (req, res, next) {
+      try {
+        const { token } = req.body;
+
+        tokenService.validateActionToken(token);
+
+        const tokenData = await tokenService.findToken(token);
+
+        req.user = tokenData._id;
+        next()
+      } catch (e) {
+        next(e);
+      }
+    };
+  }
 }
 
 module.exports = new UserService();

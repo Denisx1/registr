@@ -5,6 +5,7 @@ const {
   SMTP_PORT,
   SMTP_USER,
   API_URL,
+  CLIENT_URL
 } = require("../config/config");
 
 class MailService {
@@ -38,7 +39,7 @@ class MailService {
     await this.tranporter.sendMail({
       from: SMTP_USER,
       to,
-      subject: "forgot password" + API_URL,
+      subject: "forgot password" + CLIENT_URL,
       text:'',
       html:
             `
